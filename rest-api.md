@@ -1,6 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+**Table of Contents** 
   - [General API Information](#general-api-information)
   - [HTTP Return Codes](#http-return-codes)
 - [LIMITS](#limits)
@@ -25,7 +25,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Public Rest API for Binance (2020-03-24)
+# Public Rest API for Crypto Data HUB (2020-03-24)
 
 ## General API Information
 * The base endpoint is: **https://api.cryptodatahub.dev**
