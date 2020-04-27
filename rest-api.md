@@ -3,7 +3,7 @@
 **Table of Contents** 
   - [General API Information](#general-api-information)
   - [HTTP Return Codes](#http-return-codes)
-- [LIMITS](#limits)
+- [Limits](#limits)
   - [General Info on Limits](#general-info-on-limits)
   - [IP Limits](#ip-limits)
 - [API Endpoints](#API-endpoints)
@@ -24,7 +24,6 @@
     - [Symbol price ticker](#symbol-price-ticker)
     - [Symbol order book ticker](#symbol-order-book-ticker)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Public Rest API for Crypto Data HUB (2020-03-24)
 
@@ -58,7 +57,6 @@
 * `quote asset` refers to the asset that is the `price` of a symbol.
 * `timestamp` refers to the UTC DateTime value in microseconds (YYYY-MM-DD hh:mm:ss.zzzzzz).
 
-
 ## General endpoints
 ### Test connectivity
 ```
@@ -86,7 +84,7 @@ NONE
 **Response:**
 ```javascript
 {
-  "serverTime": 1482827317543
+  "serverTime": "2019-07-08 11:14:15 UTC"
 }
 ```
 
@@ -100,13 +98,12 @@ Get user stats and general info, mainly used to track current API Key status.
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-apikey | STRING | YES |
-apikey | STRING | NO | You ApiKey
+apikey | STRING | YES | 4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7
 
 **Response:**
 ```javascript
 {
-  "email": "andres.iniesta@fcb.es",
+  "email": "john.andrews.42@hotmail.com",
   "creation_timestamp": "2019-07-08 11:14:15",
   "apikey": "26263hSgHyysIsjAsKiwhH10Js",
   "apikey_status": "enabled",
@@ -116,14 +113,13 @@ apikey | STRING | NO | You ApiKey
 }
 ```
 
-### Exchange information
+## Market Data endpoints
+
+### Assets
 ```
 GET /assets
 ```
 Current exchange trading rules and symbol information
-
-**Weight:**
-1
 
 **Parameters:**
 NONE
@@ -131,157 +127,167 @@ NONE
 **Response:**
 ```javascript
 {
-  "timezone": "UTC",
-  "serverTime": 1565246363776,
-  "rateLimits": [
-    {
-      //These are defined in the `ENUM definitions` section under `Rate Limiters (rateLimitType)`.
-      //All limits are optional
-    }
-  ],
-  "exchangeFilters": [
-    //These are the defined filters in the `Filters` section.
-    //All filters are optional.
-  ],
-  "symbols": [
-    {
-      "symbol": "ETHBTC",
-      "status": "TRADING",
-      "baseAsset": "ETH",
-      "baseAssetPrecision": 8,
-      "quoteAsset": "BTC",
-      "quotePrecision": 8,
-      "baseCommissionPrecision": 8,
-      "quoteCommissionPrecision": 8,
-      "orderTypes": [
-        "LIMIT",
-        "LIMIT_MAKER",
-        "MARKET",
-        "STOP_LOSS",
-        "STOP_LOSS_LIMIT",
-        "TAKE_PROFIT",
-        "TAKE_PROFIT_LIMIT"
-      ],
-      "icebergAllowed": true,
-      "ocoAllowed": true,
-      "quoteOrderQtyMarketAllowed": true,
-      "isSpotTradingAllowed": true,
-      "isMarginTradingAllowed": false,
-      "filters": [
-        //These are defined in the Filters section.
-        //All filters are optional
-      ]
-    }
-  ]
+  "marketname": "bitmax",
+  "coinpairname": "eth-btc",		
+  "market_id": "eth-btc",			// ASSET ID IN OUR SYSTEM
+  "market_symbol": "ETHBTC"			// ASSET ID IN EXCHANGE
 }
 ```
 
-## Market Data endpoints
-### Order book
+### Ticker
 ```
-GET /api/v3/depth
+GET /ticker
 ```
-
-**Weight:**
-Adjusted based on the limit:
-
-
-Limit | Weight
------------- | ------------
-5, 10, 20, 50, 100 | 1
-500 | 5
-1000 | 10
-5000| 50
-
-
+Get ticker information for a specific market and asset
 **Parameters:**
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-symbol | STRING | YES |
-limit | INT | NO | Default 100; max 5000. Valid limits:[5, 10, 20, 50, 100, 500, 1000, 5000]
+apikey | STRING | YES | 4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7
+market | STRING | YES | Exchange name (Binance, Kraken, Hitbtc...) Only one market at a time
+pair   | STRING | YES | Asset pair name (btc-usdt, eth-btc). Only one asset at a time
+from   | STRING | NO | Get data from specific point in time. If Null return values from last hour
 
 **Response:**
 ```javascript
 {
-  "lastUpdateId": 1027024,
-  "bids": [
-    [
-      "4.00000000",     // PRICE
-      "431.00000000"    // QTY
-    ]
-  ],
-  "asks": [
-    [
-      "4.00000200",
-      "12.00000000"
-    ]
-  ]
+	"data": [{
+				"market": "binance",
+				"coinpair": "btc-usdt",
+				"ask": "7590.0000000000",
+				"bid": "7589.9200000000",
+				"last": "7590.0000000000",
+				"quote_last": "0.0001317523",
+				"volume": "36.4747580000",
+				"timestamp": "2020-04-26 10:41:23.692"
+			 },
+			{
+				"market":"binance",
+				"coinpair":"btc-usdt",
+				"ask":"7595.0000000000",
+				"bid":"7594.9900000000",
+				"last":"7595.0000000000",
+				"quote_last":"0.0001316656",
+				"volume":"17.7601530000",
+				"timestamp":"2020-04-26	10:42:27.596 "
+			},
+			...
+			}]
 }
 ```
 
 
-### Recent trades list
+### Trading Indicators
 ```
-GET /api/v3/trades
+GET /indicators
 ```
-Get recent trades (up to last 500).
+Returns the required indicator value for the selected exchange and asset
+Available indicator values are:
+1. sma (Simple Moving Average)
+2. ema (Exponential Moving Average)
+3. bollinger (Bollinget Bands Up/Down values)
+4. maxmin (Maxmin Values in timeframe)
+5. rsi (Relative Strenght Index)
 
-**Weight:**
-1
+* Every indicator is presented in different timeframe blocks by default which stands for the aggregated data to retrieve the value (5min,15min,30min,60min,4h,24h)
 
 **Parameters:**
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-symbol | STRING | YES |
-limit | INT | NO | Default 500; max 1000.
+apikey | STRING | YES | 4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7
+market | STRING | YES | Exchange name (Binance, Kraken, Hitbtc...) Only one market at a time
+pair   | STRING | YES | Asset pair name (btc-usdt, eth-btc). Only one asset at a time
+indicator | STRING | YES | Indicator name (sma,ema,bollinger,rsi,maxmin)
+from   | STRING | NO | Get data from specific point in time. If Null return values from last hour
 
 **Response:**
 ```javascript
-[
-  {
-    "id": 28457,
-    "price": "4.00000100",
-    "qty": "12.00000000",
-    "quoteQty": "48.000012",
-    "time": 1499865549590,
-    "isBuyerMaker": true,
-    "isBestMatch": true
-  }
-]
+{
+	"data": [{
+			"market": "binance",
+			"coinpair": "btc-usdt",
+			"ema5min": "7636.6245166184",
+			"ema15min": "7633.0828216897",
+			"ema30min": "7621.6355339158",
+			"ema60min": "7606.1086782060",
+			"ema4h": "7574.4784339860",
+			"ema24h": "7554.2763261044",
+			"timestamp": "2020-04-26 11: 06: 08.458"
+		},
+		{
+			"market": "binance",
+			"coinpair": "btc-usdt",
+			"ema5min": "7638.0830110789",
+			"ema15min": "7634.1384454644",
+			"ema30min": "7622.9710143354",
+			"ema60min": "7607.3118272334",
+			"ema4h": "7575.0619564949",
+			"ema24h": "7554.4040487463",
+			"timestamp": "2020-04-26 11: 07: 12.344"
+		},
+		...
+		]
+}
 ```
 
-### Old trade lookup (MARKET_DATA)
+### Trading Alarms
 ```
-GET /api/v3/historicalTrades
+GET /alarms
 ```
-Get older trades.
+Returns the required buy/sell alarm status for the selected exchange and asset based on the provided indicator
+Not all the indicators create the same kind of alarms output, so in this case we have 2 alarm categories:
+1. Buy/Sell Alarms (Alarms based in indicators like sma, ema...) Values can be buy/sell/neutral
+2. Volatility Alarms (Alarms based in data agreggation like Volumes) Values can be volatile/neutral
 
-**Weight:**
-5
+Available alarm values are:
+1. sma (Simple Moving Average)
+2. ema (Exponential Moving Average)
+3. bollinger (Bollinget Bands Up/Down values)
+4. maxmin (Maxmin Values in timeframe)
+5. rsi (Relative Strenght Index)
+
+
+* Every alarm is presented in different timeframe blocks by default which stands for the aggregated data to retrieve the value (5min,15min,30min,60min,4h,24h)
 
 **Parameters:**
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-symbol | STRING | YES |
-limit | INT | NO | Default 500; max 1000.
-fromId | LONG | NO | TradeId to fetch from. Default gets most recent trades.
+apikey | STRING | YES | 4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7
+market | STRING | YES | Exchange name (Binance, Kraken, Hitbtc...) Only one market at a time
+pair   | STRING | YES | Asset pair name (btc-usdt, eth-btc). Only one asset at a time
+alarm | STRING | YES | Alarm name (sma,ema,bollinger,rsi,maxmin)
+from   | STRING | NO | Get data from specific point in time. If Null return values from last hour
 
 **Response:**
 ```javascript
-[
-  {
-    "id": 28457,
-    "price": "4.00000100",
-    "qty": "12.00000000",
-    "quoteQty": "48.000012",
-    "time": 1499865549590,
-    "isBuyerMaker": true,
-    "isBestMatch": true
-  }
-]
+{
+	"data": [{
+			"market": "binance",
+			"coinpair": "btc-usdt",
+			"ema5min": "neutral",
+			"ema15min": "neutral",
+			"ema30min": "neutral",
+			"ema60min": "buy",
+			"ema4h": "buy",
+			"ema24h": "buy",
+			"timestamp": "2020-04-26 11:15:34.470"
+		},
+		{
+			"market": "binance",
+			"coinpair": "btc-usdt",
+			"ema5min": "sell",
+			"ema15min": "neutral",
+			"ema30min": "neutral",
+			"ema60min": "buy",
+			"ema4h": "buy",
+			"ema24h": "buy",
+			"timestamp": "2020-04-26 11:13:32.413
+		},
+		...
+		]
+}
 ```
 
 ### Compressed/Aggregate trades list
