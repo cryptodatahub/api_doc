@@ -96,6 +96,10 @@ Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 apikey | STRING | YES | 4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7
 
+**Example:**
+```
+https://api.cryptodahub.dev/userstatus.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7
+```
 **Response:**
 ```javascript
 {
@@ -120,6 +124,10 @@ Current exchange trading rules and symbol information
 **Parameters:**
 NONE
 
+**Example:**
+```
+https://api.cryptodahub.dev/assets.php
+```
 **Response:**
 ```javascript
 {
@@ -154,6 +162,10 @@ market | STRING | YES | Exchange name (Binance, Kraken, Hitbtc...) Only one mark
 pair   | STRING | YES | Asset pair name (btc-usdt, eth-btc). Only one asset at a time
 from   | STRING | NO | Get data from specific point in time. If Null return values from last hour
 
+**Example:**
+```
+https://api.cryptodahub.dev/ticker.php.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt
+```
 **Response:**
 ```javascript
 {
@@ -207,6 +219,10 @@ pair   | STRING | YES | Asset pair name (btc-usdt, eth-btc). Only one asset at a
 indicator | STRING | YES | Indicator name (sma,ema,bollinger,rsi,maxmin)
 from   | STRING | NO | Get data from specific point in time. If Null return values from last hour
 
+**Example:**
+```
+https://api.cryptodahub.dev/indicators.php.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt&indicator=ema
+```
 **Response:**
 ```javascript
 {
@@ -266,6 +282,10 @@ pair   | STRING | YES | Asset pair name (btc-usdt, eth-btc). Only one asset at a
 alarm | STRING | YES | Alarm name (sma,ema,bollinger,rsi,maxmin)
 from   | STRING | NO | Get data from specific point in time. If Null return values from last hour
 
+**Example:**
+```
+https://api.cryptodahub.dev/alarms.php.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt&alarm=ema
+```
 **Response:**
 ```javascript
 {
@@ -314,8 +334,10 @@ pair   | STRING | YES | Asset pair name (btc-usdt, eth-btc). Only one asset at a
 botname | STRING | YES | market trending value (bear/bull)
 from   | STRING | NO | Get data from specific point in time. If Null return values from last hour
 
-
-
+**Example:**
+```
+https://api.cryptodahub.dev/orders.php.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt&botname=bull
+```
 **Response:**
 ```javascript
 {
@@ -365,6 +387,10 @@ from   | STRING | NO | Get data from specific point in time. If Null return valu
 Exchanges where the required asset is not included will return null value.
 Exchange deviation will be always zero for the provided one in parameters
 
+**Example:**
+```
+https://api.cryptodahub.dev/arbitration.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt
+```
 **Response:**
 ```javascript
 {
@@ -416,7 +442,10 @@ Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 apikey | STRING | YES | 4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7
 
-
+**Example:**
+```
+https://api.cryptodahub.dev/allassetslast.php.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7
+```
 **Response:**
 ```javascript
 {
@@ -475,7 +504,10 @@ market | STRING | YES | Exchange name (Binance, Kraken, Hitbtc...) Only one mark
 pair   | STRING | YES | Asset pair name (btc-usdt, eth-btc). Only one asset at a time
 from   | STRING | NO | Get data from specific point in time. If Null return values from last hour
 
-* If the symbol is not sent, prices for all symbols will be returned in an array.
+**Example:**
+```
+https://api.cryptodahub.dev/volumes.php.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt
+```
 
 **Response:**
 ```javascript
