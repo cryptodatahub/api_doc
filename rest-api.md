@@ -164,7 +164,7 @@ from   | STRING | NO | Get data from specific point in time. If Null return valu
 
 **Example:**
 ```
-https://api.cryptodahub.dev/ticker.php.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt
+https://api.cryptodahub.dev/ticker.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt
 ```
 **Response:**
 ```javascript
@@ -221,7 +221,7 @@ from   | STRING | NO | Get data from specific point in time. If Null return valu
 
 **Example:**
 ```
-https://api.cryptodahub.dev/indicators.php.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt&indicator=ema
+https://api.cryptodahub.dev/indicators.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt&indicator=ema
 ```
 **Response:**
 ```javascript
@@ -284,7 +284,7 @@ from   | STRING | NO | Get data from specific point in time. If Null return valu
 
 **Example:**
 ```
-https://api.cryptodahub.dev/alarms.php.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt&alarm=ema
+https://api.cryptodahub.dev/alarms.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt&alarm=ema
 ```
 **Response:**
 ```javascript
@@ -336,7 +336,7 @@ from   | STRING | NO | Get data from specific point in time. If Null return valu
 
 **Example:**
 ```
-https://api.cryptodahub.dev/orders.php.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt&botname=bull
+https://api.cryptodahub.dev/orders.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt&botname=bull
 ```
 **Response:**
 ```javascript
@@ -444,7 +444,7 @@ apikey | STRING | YES | 4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5
 
 **Example:**
 ```
-https://api.cryptodahub.dev/allassetslast.php.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7
+https://api.cryptodahub.dev/allassetslast.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7
 ```
 **Response:**
 ```javascript
@@ -506,7 +506,7 @@ from   | STRING | NO | Get data from specific point in time. If Null return valu
 
 **Example:**
 ```
-https://api.cryptodahub.dev/volumes.php.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt
+https://api.cryptodahub.dev/volumes.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt
 ```
 
 **Response:**
