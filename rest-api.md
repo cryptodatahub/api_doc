@@ -13,13 +13,14 @@
     - [Check server time](#check-server-time)
 	- [Check user stats](#check-user-stats)
   - [Market Data endpoints](#market-data-endpoints)
-    - [Order book](#order-book)
-    - [Recent trades list](#recent-trades-list)
-    - [Old trade lookup (MARKET_DATA)](#old-trade-lookup-market_data)
-    - [Compressed/Aggregate trades list](#compressedaggregate-trades-list)
-    - [Kline/Candlestick data](#klinecandlestick-data)
-    - [Current average price](#current-average-price)
-    - [24hr ticker price change statistics](#24hr-ticker-price-change-statistics)
+    - [Assets](#assets)
+    - [Ticker](#ticker)
+    - [Trading Indicators](#trading-indicators)
+    - [Trading Alarms](#trading-alarms)
+    - [Trading Orders](#trading-orders)
+    - [Arbitration](#arbitration)
+    - [All Assets Last Quote](#all-assets-last-quote)
+    - [Volumes](#volumes)
     - [Symbol price ticker](#symbol-price-ticker)
     - [Symbol order book ticker](#symbol-order-book-ticker)
 
@@ -117,7 +118,7 @@ apikey | STRING | NO | You ApiKey
 
 ### Exchange information
 ```
-GET /api/v3/exchangeInfo
+GET /assets
 ```
 Current exchange trading rules and symbol information
 
