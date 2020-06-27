@@ -41,7 +41,7 @@
 # LIMITS
 
 ## IP Limits
-* When a 429 is received, it's your obligation as an API to back off and not spam the API. If you consider your API has been compromised, you cna request us to generate a new one while deleting the previous.
+* When a 429 is received, it's your obligation as an API to back off and not spam the API. If you consider your API has been compromised, you can request us to generate a new one while deleting the previous.
 * **Repeatedly violating rate limits and/or failing to back off after receiving 429s will result in an automated IP blacklisted.**
 * IP bans are tracked continuously and **scale in duration** for repeat offenders, **from 2 minutes to 1 week**.
 * **The limits on the API are based on the API keys nor the IPs.**
@@ -56,7 +56,7 @@
 ## General endpoints
 ### Test connectivity
 ```
-GET /ping
+GET /ping.php
 ```
 Test connectivity to the Rest API.
 
@@ -70,7 +70,7 @@ NONE
 
 ### Check server time
 ```
-GET /time
+GET /time.php
 ```
 Test connectivity to the Rest API and get the current server time.
 
@@ -86,7 +86,7 @@ NONE
 
 ### Check user stats
 ```
-GET /userstatus
+GET /userstatus.php
 ```
 Get user stats and general info, mainly used to track current API Key status.
 
@@ -117,7 +117,7 @@ https://api.cryptodahub.dev/userstatus.php?apikey=4c93aa4ba3d361d7fd6252a398b6fd
 
 ### Assets
 ```
-GET /assets
+GET /assets.php
 ```
 Current exchange trading rules and symbol information
 
@@ -150,7 +150,7 @@ https://api.cryptodahub.dev/assets.php
 
 ### Ticker
 ```
-GET /ticker
+GET /ticker.php
 ```
 Get ticker information for a specific market and asset
 **Parameters:**
@@ -197,7 +197,7 @@ https://api.cryptodahub.dev/ticker.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d
 
 ### Trading Indicators
 ```
-GET /indicators
+GET /indicators.php
 ```
 Returns the required indicator value for the selected exchange and asset
 Available indicator values are:
@@ -255,7 +255,7 @@ https://api.cryptodahub.dev/indicators.php?apikey=4c93aa4ba3d361d7fd6252a398b6fd
 
 ### Trading Alarms
 ```
-GET /alarms
+GET /alarms.php
 ```
 Returns the required buy/sell alarm status for the selected exchange and asset based on the provided indicator
 Not all the indicators create the same kind of alarms output, so in this case we have 2 alarm categories:
@@ -318,7 +318,7 @@ https://api.cryptodahub.dev/alarms.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d
 
 ### Trading Orders
 ```
-GET /orders
+GET /orders.php
 ```
 Returns orderbook data for the selected market and asset based in the bot (trending) value
 We are continuosly running bots based in the current intraday market trending and based in different alarm aggregation created from the trading indicators
@@ -370,7 +370,7 @@ https://api.cryptodahub.dev/orders.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d
 
 ### Exchange Arbitration
 ```
-GET /arbitration
+GET /arbitration.php
 ```
 Returns arbitration data between markets based in the source provided exchange name.
 Arbitration difference is presented in percentage data referenced to the main market asset price
@@ -431,7 +431,7 @@ https://api.cryptodahub.dev/arbitration.php?apikey=4c93aa4ba3d361d7fd6252a398b6f
 
 ### All Assets Last Price
 ```
-GET /allassetslast
+GET /allassetslast.php
 ```
 Get the last ticker value for all the markets and assets combinations in the system
 
@@ -486,7 +486,7 @@ https://api.cryptodahub.dev/allassetslast.php?apikey=4c93aa4ba3d361d7fd6252a398b
 
 ### Volumes
 ```
-GET /volumes
+GET /volumes.php
 ```
 Get aggregated volume values for base and quote assets
 There are different volume categories:
