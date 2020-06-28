@@ -27,15 +27,16 @@
 * The base endpoint is: **https://api.cryptodatahub.dev**
 * All endpoints return either a JSON object or array.
 * Data is returned in **descending** order. Newest first,  olders last.
-* All time and timestamp related fields are in **microseconds**.
+* All time and timestamp related fields are in **miliseconds**.
 
 ## HTTP Return Codes
 
+* HTTP `200` return code for succesful requests;
 * HTTP `401` return code is used when the API Key provided does not exist or its activation is still pending;
 * HTTP `404` return code is used for malformed requests;
   the issue is on the sender's side.
-* HTTP `403` return code is used when you overcome the daily operations allowed by your API Key. API operations counter is reset once per day at 00:00 UTC Time
-* HTTP `429` return code is used when breaking a request rate limit based in the throtling policy (100 req/min or 3 req/sec). API Key will be whitelisted again after 30min.
+* HTTP `403` return code is used when your API is still not activated or has been disabled by the administrator due to service abuse
+* HTTP `429` return code is used when you overcome the daily operations allowed by your API Key. API operations counter is reset once per day at 00:00 UTC Time
 * HTTP `5XX` return codes are used for internal errors; the issue is on our side.
 
 # LIMITS
@@ -51,7 +52,7 @@
 ## Terminology
 * `base asset` refers to the asset that is the `quantity` of a symbol.
 * `quote asset` refers to the asset that is the `price` of a symbol.
-* `timestamp` refers to the UTC DateTime value in microseconds (YYYY-MM-DD hh:mm:ss.zzzzzz).
+* `timestamp` refers to the UTC DateTime value in miliseconds (YYYY-MM-DD hh:mm:ss.zzz).
 
 ## General endpoints
 ### Test connectivity
@@ -98,7 +99,7 @@ apikey | STRING | YES | 4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5
 
 **Example:**
 ```
-https://api.cryptodahub.dev/userstatus.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7
+https://api.cryptodatahub.dev/userstatus.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7
 ```
 **Response:**
 ```javascript
@@ -108,8 +109,7 @@ https://api.cryptodahub.dev/userstatus.php?apikey=4c93aa4ba3d361d7fd6252a398b6fd
   "apikey": "26263hSgHyysIsjAsKiwhH10Js",
   "apikey_status": "enabled",
   "plan": "premium_1",
-  "requests_today": "512",
-  "available_requests_today": "4488"
+  "requests_today": "512"
 }
 ```
 
@@ -126,7 +126,7 @@ NONE
 
 **Example:**
 ```
-https://api.cryptodahub.dev/assets.php
+https://api.cryptodatahub.dev/assets.php
 ```
 **Response:**
 ```javascript
@@ -164,7 +164,7 @@ from   | STRING | NO | Get data from specific point in time. If Null return valu
 
 **Example:**
 ```
-https://api.cryptodahub.dev/ticker.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt
+https://api.cryptodatahub.dev/ticker.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt
 ```
 **Response:**
 ```javascript
@@ -221,7 +221,7 @@ from   | STRING | NO | Get data from specific point in time. If Null return valu
 
 **Example:**
 ```
-https://api.cryptodahub.dev/indicators.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt&indicator=ema
+https://api.cryptodatahub.dev/indicators.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt&indicator=ema
 ```
 **Response:**
 ```javascript
@@ -284,7 +284,7 @@ from   | STRING | NO | Get data from specific point in time. If Null return valu
 
 **Example:**
 ```
-https://api.cryptodahub.dev/alarms.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt&alarm=ema
+https://api.cryptodatahub.dev/alarms.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt&alarm=ema
 ```
 **Response:**
 ```javascript
@@ -336,7 +336,7 @@ from   | STRING | NO | Get data from specific point in time. If Null return valu
 
 **Example:**
 ```
-https://api.cryptodahub.dev/orders.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt&botname=bull
+https://api.cryptodatahub.dev/orders.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt&botname=bull
 ```
 **Response:**
 ```javascript
@@ -389,7 +389,7 @@ Exchange deviation will be always zero for the provided one in parameters
 
 **Example:**
 ```
-https://api.cryptodahub.dev/arbitration.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt
+https://api.cryptodatahub.dev/arbitration.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt
 ```
 **Response:**
 ```javascript
@@ -444,7 +444,7 @@ apikey | STRING | YES | 4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5
 
 **Example:**
 ```
-https://api.cryptodahub.dev/allassetslast.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7
+https://api.cryptodatahub.dev/allassetslast.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7
 ```
 **Response:**
 ```javascript
@@ -506,7 +506,7 @@ from   | STRING | NO | Get data from specific point in time. If Null return valu
 
 **Example:**
 ```
-https://api.cryptodahub.dev/volumes.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt
+https://api.cryptodatahub.dev/volumes.php?apikey=4c93aa4ba3d361d7fd6252a398b6fdec9d3f3ea358b521765d95c1c5112a86f7&market=binance&coinpair=btc-usdt
 ```
 
 **Response:**
